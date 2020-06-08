@@ -281,9 +281,10 @@ public class StreamAssignment {
         //Write code here
         LocalDate start = LocalDate.parse("2020-01-01");
         LocalDate end = LocalDate.parse("2020-12-31");
-        Stream.iterate(start, date -> date.plusDays(1))
+        _2020_dates = Stream.iterate(start, date -> date.plusDays(1))
                 .limit(ChronoUnit.DAYS.between(start, end)+1)
-                .forEach(System.out::println);
+                .toArray(LocalDate[]::new);
+
 
 
         assertNotNull(_2020_dates);
