@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.function.ToIntFunction;
 import java.util.stream.Collectors;
@@ -263,7 +264,8 @@ public class StreamAssignment {
 
         //Write code here
         personMap = people.stream()
-                
+                .collect(Collectors.groupingBy(Person::getLastName));
+
 
         assertNotNull(personMap);
         assertEquals(expectedSize, personMap.size());
@@ -277,7 +279,11 @@ public class StreamAssignment {
         LocalDate[] _2020_dates = null;
 
         //Write code here
-       // Stream.iterate()
+        LocalDate start = LocalDate.parse("2020-01-01");
+        LocalDate end = LocalDate.parse("2020-12-31");
+        Stream.iterate(start, date -> date.plusDays(1))
+                .limit(ChronoUnit.DAYS.between(start, end)+1)
+                .forEach(System.out::println);
 
 
         assertNotNull(_2020_dates);
